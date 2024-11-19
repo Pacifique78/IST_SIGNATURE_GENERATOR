@@ -1,0 +1,104 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: signature_db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    command: -p 5433
+    ports:
+      - "5433:5433"
+    networks:
+      - signature_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -p 5433 -U ${DB_USERNAME} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: signature_api  # Fixed container name
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
+      DB_HOST: signature_db       # Use container name instead of env variable
+      DB_PORT: 5433
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      SERVER_PORT: 5005
+      FRONTEND_URL: ${FRONTEND_URL}
+      API_URL: ${API_URL}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      ADMIN_NAME: ${ADMIN_NAME}
+    ports:
+      - "5005:5005"
+    expose:
+      - "5005"                    # Explicitly expose the port
+    networks:
+      - signature_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: signature_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - signature_network
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:${SERVER_PORT}
+    profiles:
+      - ${SPRING_PROFILES_ACTIVE}
+
+  test:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.test
+    container_name: signature_test
+    environment:
+      SPRING_PROFILES_ACTIVE: test
+      DB_HOST: ${DB_HOST}
+      DB_PORT: 5433
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      FRONTEND_URL: ${FRONTEND_URL}
+      API_URL: ${API_URL}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      ADMIN_NAME: ${ADMIN_NAME}
+    # depends_on:
+    #   postgres:
+    #     condition: service_healthy
+    networks:
+      - signature_network
+
+networks:
+  signature_network:
+    driver: bridge
+
+volumes:
+  postgres_data:

@@ -1,0 +1,79 @@
+# Node modules (for future frontend)
+**/node_modules/
+**/dist/
+**/build/
+
+# Backend build artifacts
+**/*.class
+**/*.jar
+
+# Development files
+**/.mvn/
+**/mvnw
+**/mvnw.cmd
+
+# IDE files
+**/.idea/
+**/.vscode/
+**/*.iml
+**/*.iws
+**/*.ipr
+**/.classpath
+**/.project
+**/.settings/
+
+# Logs
+**/*.log
+**/logs/
+
+# Git related
+.git/
+**/.gitignore
+
+# Docker related
+**/Dockerfile*
+**/.dockerignore
+
+# Test reports
+**/surefire-reports/
+**/test-output/
+**/jacoco.exec
+
+# Local configuration
+**/application-dev.yml
+**/application-local.yml
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# OS specific
+.DS_Store
+**/Thumbs.db
+
+# Scripts
+scripts/
+*.sh
+
+# Temporary files
+**/*.tmp
+**/*.bak
+**/*.swp
+**/*~
+
+# Editor directories and files
+**/.vscode/*
+!**/.vscode/extensions.json
+**/.idea
+**/.DS_Store
+**/*.suo
+**/*.ntvs*
+**/*.njsproj
+**/*.sln
+**/*.sw?
