@@ -1,0 +1,50 @@
+# Build artifacts
+*.class
+*.jar
+
+# Development files
+.mvn/
+mvnw
+mvnw.cmd
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+
+# Logs
+*.log
+logs/
+
+# Git related
+.git/
+.gitignore
+
+# Docker related
+Dockerfile
+Dockerfile.test
+.dockerignore
+
+# Test reports
+surefire-reports/
+test-output/
+jacoco.exec
+
+# Local configuration
+src/main/resources/application-dev.yml
+src/main/resources/application-local.yml
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+*~
+
+# OS specific
+.DS_Store
+Thumbs.db

@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: signature-generator
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_NAME:signature_db}
+    username: ${DB_USERNAME:signature_user}
+    password: ${DB_PASSWORD:signature_pass}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+app:
+  admin:
+    email: ${ADMIN_EMAIL:administchallenge@yopmail.com}
+    password: ${ADMIN_PASSWORD:Admin123!@#}
+    name: ${ADMIN_NAME:Admin User}
+  jwt:
+    secret: ${JWT_SECRET:default_secret_key_minimum_32_chars_long}
+    expiration: 86400000
+  frontend:
+    url: ${FRONTEND_URL:http://localhost:3000}
+  cors:
+    allowed-origins: "*"
+
+server:
+  port: ${SERVER_PORT:5005}

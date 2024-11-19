@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none  # Disable automatic schema updates in production
+
+logging:
+  level:
+    root: INFO
+    com.istafrica.signature: INFO
