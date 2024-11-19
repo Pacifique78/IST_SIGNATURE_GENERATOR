@@ -13,6 +13,11 @@ env:
   SSH_HOST: ${{ secrets.SSH_HOST }}
   SSH_USER: ${{ secrets.SSH_USER }}
   PROJECT_PATH: ${{ secrets.PROJECT_PATH }}
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+  MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+  MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+  FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
+  API_URL: ${{ secrets.API_URL }}
 
 jobs:
   test:
