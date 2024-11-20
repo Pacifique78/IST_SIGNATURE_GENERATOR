@@ -61,8 +61,6 @@ services:
     environment:
       - NODE_ENV=development
       - VITE_API_URL=https://api.ist-signature.i-skip.com/
-    profiles:
-      - ${SPRING_PROFILES_ACTIVE}
 
 networks:
   signature_network:
