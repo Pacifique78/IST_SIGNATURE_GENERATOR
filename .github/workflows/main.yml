@@ -23,6 +23,9 @@ env:
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
   SERVER_PORT: ${{ secrets.SERVER_PORT }}
   VITE_API_URL: ${{ secrets.VITE_API_URL }}
+  ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+  ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+  ADMIN_NAME: ${{ secrets.ADMIN_NAME }}
   SPRING_PROFILES_ACTIVE: ${{ secrets.SPRING_PROFILES_ACTIVE }}
 
 jobs:
@@ -116,6 +119,9 @@ jobs:
           echo "DB_PORT=${{ env.DB_PORT }}" >> .env
           echo "SPRING_PROFILES_ACTIVE=${{ env.SPRING_PROFILES_ACTIVE }}" >> .env
           echo "VITE_API_URL=${{ env.VITE_API_URL }}" >> .env
+          echo "ADMIN_EMAIL=${{ env.ADMIN_EMAIL }}" >> .env
+          echo "ADMIN_PASSWORD=${{ env.ADMIN_PASSWORD }}" >> .env
+          echo "ADMIN_NAME=${{ env.ADMIN_NAME }}" >> .env
           docker rm -f signature_api
           docker rm -f signature_frontend
           docker rmi ${{ env.DOCKERHUB_USERNAME }}/ist_signature_api:latest
