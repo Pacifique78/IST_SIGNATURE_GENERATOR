@@ -155,7 +155,9 @@ public class AuthService {
 		try {
 			log.debug("Generating verification token for user: {}", user.getEmail());
 			String token = generateVerificationToken(user);
-			String verificationLink = frontendUrl + "/auth/verify-email?token=" + token;
+			String verificationLink = frontendUrl.endsWith("/")
+					? frontendUrl + "auth/verify-email?token=" + token
+					: frontendUrl + "/auth/verify-email?token=" + token;
 			log.debug("Creating email message");
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
