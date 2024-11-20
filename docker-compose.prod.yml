@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   postgres:
     image: postgres:15-alpine
@@ -7,13 +7,13 @@ services:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-    command: -p 5433
+    command: -p 5435
     ports:
-      - "5433:5433"
+      - "5435:5435"
     networks:
       - signature_network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -p 5433 -U ${DB_USERNAME} -d ${DB_NAME}"]
+      test: ["CMD-SHELL", "pg_isready -p 5435 -U ${DB_USERNAME} -d ${DB_NAME}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -24,8 +24,8 @@ services:
     image: ${DOCKERHUB_USERNAME}/ist_signature_api:latest
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
-      DB_HOST: signature_db       # Use container name instead of env variable
-      DB_PORT: 5433
+      DB_HOST: signature_db # Use container name instead of env variable
+      DB_PORT: 5435
       DB_NAME: ${DB_NAME}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
@@ -41,7 +41,7 @@ services:
     ports:
       - "5005:5005"
     expose:
-      - "5005"                    # Explicitly expose the port
+      - "5005" # Explicitly expose the port
     networks:
       - signature_network
     depends_on:
