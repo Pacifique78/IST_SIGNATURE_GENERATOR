@@ -100,6 +100,7 @@ jobs:
         key: ${{ env.SSH_PRIVATE_KEY }}
         script: |
           cd ${{ env.PROJECT_PATH }}
+          echo "" > .env
           echo "DOCKERHUB_USERNAME=${{ env.DOCKERHUB_USERNAME }}" >> .env
           echo "JWT_SECRET=${{ env.JWT_SECRET }}" >> .env
           echo "MAIL_USERNAME=${{ env.MAIL_USERNAME }}" >> .env
@@ -112,6 +113,7 @@ jobs:
           echo "DB_HOST=${{ env.DB_HOST }}" >> .env
           echo "DB_PORT=${{ env.DB_PORT }}" >> .env
           echo "SPRING_PROFILES_ACTIVE=${{ env.SPRING_PROFILES_ACTIVE }}" >> .env
+          echo "VITE_API_URL=${{ env.VITE_API_URL }}" >> .env
           docker rm -f signature_api
           docker rm -f signature_frontend
           docker rmi ${{ env.DOCKERHUB_USERNAME }}/ist_signature_api:latest
