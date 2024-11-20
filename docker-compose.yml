@@ -13,7 +13,7 @@ services:
     networks:
       - signature_network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -p 5435 -U ${DB_USERNAME} -d ${DB_NAME}"]
+      test: ["CMD-SHELL", "pg_isready -p 5435 -U postgres -d ${DB_NAME}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -80,8 +80,8 @@ services:
       DB_HOST: ${DB_HOST}
       DB_PORT: 5435
       DB_NAME: ${DB_NAME}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
       JWT_SECRET: ${JWT_SECRET}
       MAIL_USERNAME: ${MAIL_USERNAME}
       MAIL_PASSWORD: ${MAIL_PASSWORD}
