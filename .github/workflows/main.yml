@@ -74,6 +74,8 @@ jobs:
         file: ./frontend/Dockerfile.prod
         push: true
         tags: ${{ env.DOCKERHUB_USERNAME }}/ist_signature:latest
+        build-args: |
+          VITE_API_URL=${{ env.VITE_API_URL }}
 
   deploy:
     needs: build-and-push
