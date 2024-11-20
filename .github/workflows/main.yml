@@ -18,6 +18,10 @@ env:
   MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
   FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
   API_URL: ${{ secrets.API_URL }}
+  DB_NAME: ${{ secrets.DB_NAME }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  SPRING_PROFILES_ACTIVE: ${{ secrets.SPRING_PROFILES_ACTIVE }}
 
 jobs:
   test:
