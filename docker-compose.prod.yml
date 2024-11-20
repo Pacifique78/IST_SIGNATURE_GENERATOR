@@ -59,7 +59,7 @@ services:
     networks:
       - signature_network
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
       - VITE_API_URL=https://api.ist-signature.i-skip.com/
 
 networks:
