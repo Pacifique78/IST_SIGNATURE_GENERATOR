@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   postgres:
-    image: postgres:15-alpine
+    image: postgres:14
     container_name: signature_db
     environment:
       POSTGRES_DB: ${DB_NAME}
