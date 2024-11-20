@@ -66,7 +66,7 @@ const copyPlainText = async () => {
 
 const openInOutlook = () => {
   // Open Outlook signature settings in a new tab
-  window.open('https://outlook.office.com/mail/options/mail/messageContent/signature', '_blank')
+  window.open('https://outlook.office.com/mail/options/accounts-category/signatures-subcategory', '_blank')
 }
 </script>
 <script lang="ts">
