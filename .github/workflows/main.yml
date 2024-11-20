@@ -100,18 +100,18 @@ jobs:
         key: ${{ env.SSH_PRIVATE_KEY }}
         script: |
           cd ${{ env.PROJECT_PATH }}
-          echo "DOCKERHUB_USERNAME=${{ env.DOCKERHUB_USERNAME }}" > .env
-          echo "JWT_SECRET=${{ env.JWT_SECRET }}" > .env
-          echo "MAIL_USERNAME=${{ env.MAIL_USERNAME }}" > .env
-          echo "MAIL_PASSWORD=${{ env.MAIL_PASSWORD }}" > .env
-          echo "FRONTEND_URL=${{ env.FRONTEND_URL }}" > .env
-          echo "API_URL=${{ env.API_URL }}" > .env
-          echo "DB_NAME=${{ env.DB_NAME }}" > .env
-          echo "DB_USERNAME=${{ env.DB_USERNAME }}" > .env
-          echo "DB_PASSWORD=${{ env.DB_PASSWORD }}" > .env
-          echo "DB_HOST=${{ env.DB_HOST }}" > .env
-          echo "DB_PORT=${{ env.DB_PORT }}" > .env
-          echo "SPRING_PROFILES_ACTIVE=${{ env.SPRING_PROFILES_ACTIVE }}" > .env
+          echo "DOCKERHUB_USERNAME=${{ env.DOCKERHUB_USERNAME }}" >> .env
+          echo "JWT_SECRET=${{ env.JWT_SECRET }}" >> .env
+          echo "MAIL_USERNAME=${{ env.MAIL_USERNAME }}" >> .env
+          echo "MAIL_PASSWORD=${{ env.MAIL_PASSWORD }}" >> .env
+          echo "FRONTEND_URL=${{ env.FRONTEND_URL }}" >> .env
+          echo "API_URL=${{ env.API_URL }}" >> .env
+          echo "DB_NAME=${{ env.DB_NAME }}" >> .env
+          echo "DB_USERNAME=${{ env.DB_USERNAME }}" >> .env
+          echo "DB_PASSWORD=${{ env.DB_PASSWORD }}" >> .env
+          echo "DB_HOST=${{ env.DB_HOST }}" >> .env
+          echo "DB_PORT=${{ env.DB_PORT }}" >> .env
+          echo "SPRING_PROFILES_ACTIVE=${{ env.SPRING_PROFILES_ACTIVE }}" >> .env
           docker rm -f signature_api
           docker rm -f signature_frontend
           docker rmi ${{ env.DOCKERHUB_USERNAME }}/ist_signature_api:latest
