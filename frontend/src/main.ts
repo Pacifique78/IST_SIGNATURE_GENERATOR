@@ -1,3 +1,4 @@
+/// <reference path="../env.d.ts" />
 import './assets/main.css'
 
 import { createApp } from 'vue'
